@@ -1,4 +1,5 @@
 #include<cstring>
+#include<iostream>
 #include"My_string.h"
 const int main_size = 16;
 My_string::My_string(const char* input) {
@@ -21,6 +22,55 @@ My_string::My_string(const char* input) {
         dyn_string.word[len] = '\0'; 
         st_string.length = 0;
         st_string.string[0] = '\0';
+    }
+}
+
+My_string::My_string(const My_string& st) {
+    if (st.dyn_string.size > main_size) {
+        this->dyn_string.size = st.dyn_string.size;
+        this->dyn_string.word = new char[dyn_string.size + 1];
+        for (int i = 0;i < st.dyn_string.size;++i) {
+           this->dyn_string.word[i] = st.dyn_string.word[i];
+        }
+        st_string.length = 0;
+        st_string.string[0] = '\0';
+    }
+    else {
+        this->st_string.length = st.st_string.length;
+        for (int i = 0;i < st.st_string.length;++i) {
+           this->st_string.string[i] = st.st_string.string[i];
+        }
+        this->dyn_string.size = 0;
+        this->dyn_string.word = nullptr;
+    }
+    
+}
+
+My_string& My_string::operator=(const My_string& st) {
+    if (this == &st) {
+        std::cerr << "THis the same object:" << std::endl;
+        return *this;
+    }
+    if (st.dyn_string.size > main_size) {
+        delete[] this->dyn_string.word;
+
+       this->dyn_string.size = st.dyn_string.size;
+        this->dyn_string.word = new char[this->dyn_string.size + 1];
+        for (int i = 0; i < st.dyn_string.size; ++i) {
+            this->dyn_string.word[i] = st.dyn_string.word[i];
+        }
+        this->dyn_string.word[this->dyn_string.size] = '\0';
+        this->st_string.length = 0;
+        this->st_string.string[0] = '\0';
+    }
+    else {
+        this->st_string.length = st.st_string.length;
+        for (int i = 0;i < st.st_string.length;++i) {
+            this->st_string.string[i] = st.st_string.string[i];
+        }
+        this->st_string.string[this->st_string.length] = '\0';
+        this->dyn_string.size = 0;
+        this->dyn_string.word = nullptr;
     }
 }
 
