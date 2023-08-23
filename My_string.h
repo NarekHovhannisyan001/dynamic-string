@@ -3,7 +3,9 @@
 class My_string {
 public:
     My_string(const char* input);
-   const char* print() const;
+    My_string(const My_string&);
+    My_string& operator=(const My_string&);
+    const char* print() const;
     ~My_string();
 
 
