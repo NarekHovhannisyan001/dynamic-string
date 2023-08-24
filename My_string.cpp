@@ -1,6 +1,5 @@
 #include "My_string.h"
 
-
 #include <cstring>
 #include <iostream>
 
@@ -18,21 +17,22 @@ My_string::My_string() {
 My_string::My_string(const char* input) {
     int len = strlen(input);
     if(len <= main_size) {
-        st_string.m_length = len;
+        
         for (int i = 0;i < len;++i) {
             st_string.m_string[i] = input[i];
         }
         st_string.m_string[len] = '\0';
+        st_string.m_length = len;
         dyn_string.m_size = 0;
         dyn_string.m_word = nullptr;
     }
     else {
-        dyn_string.m_size = len;
         dyn_string.m_word  = new char[len + 1];
         for (int i = 0;i < len;++i) {
             dyn_string.m_word[i] = input[i];
         }
         dyn_string.m_word[len] = '\0'; 
+        dyn_string.m_size = len;
         st_string.m_length = 0;
         st_string.m_string[0] = '\0';
     }
@@ -255,4 +255,3 @@ void My_string::reset() {
     st_string.m_length = 0;
     st_string.m_string[0] = '\0';
 }
-
