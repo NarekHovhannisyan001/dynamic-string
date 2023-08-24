@@ -1,7 +1,9 @@
+#include "My_string.h"
+
+
 #include <cstring>
 #include <iostream>
 
-#include "My_string.h"
 
 const int main_size = 16;
 
