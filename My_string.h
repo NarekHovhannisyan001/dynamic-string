@@ -37,7 +37,7 @@ private:
 
     };
 
-    union staticc
+    struct staticc
     {
         unsigned int m_length;
         char m_string[17];
@@ -48,4 +48,5 @@ private:
     staticc st_string;
 };
 
+//c#include "My_string.cpp"
 #endif //STRING_H
